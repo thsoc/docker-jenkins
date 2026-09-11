@@ -53,10 +53,12 @@ docker exec <容器名> cat /var/jenkins_home/secrets/initialAdminPassword
 ```
 #### 下载插件
 ```bash
+# 生产使用自定义镜像！！！！！
 # jenkins容器内下载docker(正式环境不用做)
 docker exec -it -u root jenkins bash
 curl -fsSL https://download.docker.com/linux/static/stable/x86_64/docker-24.0.9.tgz -o docker.tgz && tar -xvzf docker.tgz && mv docker/docker /usr/local/bin/ && rm -rf docker docker.tgz
 docker version
+
 
 # 安装 docker compose 插件
 # 1. 安装必要的工具

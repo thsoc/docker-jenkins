@@ -69,7 +69,7 @@ pipeline {                          // 声明这是一个声明式流水线，Je
                     #### 使用宿主机 IP 进行健康检查后端是否启动成功
                     ###curl -f http://$HOST_IP:8083/actuator/health || exit 1  # 请求 Spring Boot 健康检查端点，-f 表示 HTTP 错误时返回非零退出码，|| exit 1 表示失败则中止
 
-                    curl -4 -f http://host.docker.internal:8083/actuator/health || exit 1
+                    curl -f http://host.docker.internal:8083/actuator/health || exit 1
                     echo "服务启动正常"  # 检查通过后打印成功信息
                 '''
             }

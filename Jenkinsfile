@@ -1,6 +1,9 @@
 pipeline {                          // 声明这是一个声明式流水线，Jenkins 会按照固定语法结构来解析整个文件
     agent any                       // 指定流水线可以在任意一台可用的 Jenkins 节点上运行（不限制具体机器）
-
+    // 名字要和安装maven填的 Name 一致
+    tools {
+            maven 'Maven-3.9'
+    }
     environment {                   // 定义全局环境变量，所有阶段都可以使用
         COMPOSE_PROJECT_NAME = 'myapp'  // 设置 Docker Compose 项目名称为 myapp，所有容器、网络、卷都会以 myapp_ 为前缀
     }

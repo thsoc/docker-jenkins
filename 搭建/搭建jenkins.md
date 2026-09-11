@@ -19,6 +19,7 @@ git init
 git remote add origin https://github.com/thsoc/docker-jenkins.git
 # 第二步：再添加第二个 push 地址（指向本地裸仓库，jenkin需要，实际开发只需要第一步，这里是因为docker jenkins无法拉取github代码（网络问题，这边设置本地仓库作为"远程"仓库））
 git remote set-url --add --push origin D:/workspace/remote-repository/docker-jenkins/docker-jenkins.git
+git remote set-url --add --push origin https://github.com/thsoc/docker-jenkins.git
 # 验证配置
 git remote -v
 # 输出应该类似：

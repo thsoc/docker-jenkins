@@ -49,9 +49,29 @@ git remote -v
 ```bash
 docker ps
 docker exec <容器名> cat /var/jenkins_home/secrets/initialAdminPassword
-## dd90bf3764b94eeb99bac612c353593e
+## 0a35e40cdde3444688c2d498a6ea4d17
 ```
 #### 下载插件
+```bash
+# jenkins容器内下载docker(正式环境不用做)
+docker exec -it -u root jenkins bash
+curl -fsSL https://download.docker.com/linux/static/stable/x86_64/docker-24.0.9.tgz -o docker.tgz && tar -xvzf docker.tgz && mv docker/docker /usr/local/bin/ && rm -rf docker docker.tgz
+docker version
+
+## 设置插件加速
+# Manage Jenkins → Plugins → Advanced，把 Update Site 的 URL 改为
+https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json
+# 替换 default.json 中的下载地址
+docker exec -u root jenkins bash -c "sed -i 's#https://updates.jenkins.io/download#https://mirrors.tuna.tsinghua.edu.cn/jenkins#g' /var/jenkins_home/updates/default.json && sed -i 's#https://www.google.com#https://www.baidu.com#g' /var/jenkins_home/updates/default.json"
+#重启
+docker restart jenkins
+# 插件管理界面安装
+1.Pipeline，2.Git，3.Docker Pipeline，4.Localization: Chinese (Simplified) 5.JUnit
+
+# 安装maven，可页面配置
+Manage Jenkins → Tools → Maven → Add Maven 填名称 Maven-3.9，版本选 3.9.9，勾选自动安装
+
+```
 
 #### 配置Jenkinsfile
 ```txt
@@ -65,6 +85,10 @@ docker exec <容器名> cat /var/jenkins_home/secrets/initialAdminPassword
 6. Branches to build： Branch Specifier：/main
 7. Script Path 填写 Jenkinsfile（这是默认值）
 ```
+![img_1.png](img_1.png)
 
 ## 验证
 ### 修改代码提交查看访问
+
+
+

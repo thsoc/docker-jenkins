@@ -48,4 +48,18 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+
+
+<!--    指定启动类-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.at.App</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

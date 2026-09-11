@@ -58,6 +58,18 @@ docker exec -it -u root jenkins bash
 curl -fsSL https://download.docker.com/linux/static/stable/x86_64/docker-24.0.9.tgz -o docker.tgz && tar -xvzf docker.tgz && mv docker/docker /usr/local/bin/ && rm -rf docker docker.tgz
 docker version
 
+# 安装 docker compose 插件
+# 1. 安装必要的工具
+apt-get update && apt-get install -y curl
+# 2. 创建插件目录
+mkdir -p /usr/lib/docker/cli-plugins
+# 3. 下载 docker-compose 插件 （或手动下载copy到容器docker cp D:\WSL\ContainersData\jenkins\docker-compose\docker-compose-linux-x86_64 jenkins:/usr/lib/docker/cli-plugins/docker-compose）
+curl -SL https://github.com/docker/compose/releases/download/v2.27.1/docker-compose-linux-x86_64 -o /usr/lib/docker/cli-plugins/docker-compose
+# 4. 添加可执行权限
+chmod +x /usr/lib/docker/cli-plugins/docker-compose
+# 验证安装成功
+docker compose version
+
 ## 设置插件加速
 # Manage Jenkins → Plugins → Advanced，把 Update Site 的 URL 改为
 https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json

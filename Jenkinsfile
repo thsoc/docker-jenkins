@@ -50,22 +50,21 @@ pipeline {                          // 声明这是一个声明式流水线，Je
 
         stage('部署到测试环境') {     // 定义阶段：部署服务到测试环境
             steps {
-            // 使用三引号执行多行 Shell 脚本
-                sh '''
-                    docker compose down --remove-orphans || true  // 停止并删除旧容器，--remove-orphans 清理不再被 compose 文件引用的容器；|| true 确保即使没有运行中的容器也不会报错
-                    docker compose up -d  // 以后台模式（-d）启动所有服务容器
+                sh '''              # 使用三引号执行多行 Shell 脚本
+                    docker compose down --remove-orphans || true  # 停止并删除旧容器，--remove-orphans 清理不再被 compose 文件引用的容器；|| true 确保即使没有运行中的容器也不会报错
+                    docker compose up -d  # 以后台模式（-d）启动所有服务容器
                 '''
             }
         }
 
         stage('健康检查') {          // 定义阶段：检查服务是否正常启动
             steps {
-                sh '''              // 执行多行 Shell 脚本
-                    echo "等待服务启动..."  // 打印提示信息
-                    sleep 10               // 等待 10 秒，给容器足够的启动时间
+                sh '''              # 执行多行 Shell 脚本
+                    echo "等待服务启动..."  # 打印提示信息
+                    sleep 10               # 等待 10 秒，给容器足够的启动时间
                     # 检查后端是否启动成功
-                    curl -f http://localhost:8081/actuator/health || exit 1  // 请求 Spring Boot 健康检查端点，-f 表示 HTTP 错误时返回非零退出码，|| exit 1 表示失败则中止
-                    echo "服务启动正常"  // 检查通过后打印成功信息
+                    curl -f http://localhost:8083/actuator/health || exit 1  // 请求 Spring Boot 健康检查端点，-f 表示 HTTP 错误时返回非零退出码，|| exit 1 表示失败则中止
+                    echo "服务启动正常"  # 检查通过后打印成功信息
                 '''
             }
         }

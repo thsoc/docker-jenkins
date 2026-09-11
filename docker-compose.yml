@@ -1,0 +1,45 @@
+version: '3.8'
+services:
+  backend:
+    build: ./   #不要从远程拉取镜像，从当前目录的 Dockerfile 来构建镜像
+    container_name: myapp
+    ports:
+      - "8083:8083"
+#    environment:
+#      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/myapp
+#      - SPRING_DATASOURCE_USERNAME=root
+#      - SPRING_DATASOURCE_PASSWORD=root123
+#    depends_on:
+#      - mysql
+#    networks:
+#      - myapp-net
+
+### 前端
+#  frontend:
+#    build: ./frontend
+#    container_name: myapp-frontend
+#    ports:
+#      - "80:80"
+#    depends_on:
+#      - backend
+#    networks:
+#      - myapp-net
+
+#  mysql:
+#    image: mysql:8.0
+#    container_name: myapp-mysql
+#    ports:
+#      - "3306:3306"
+#    environment:
+#      MYSQL_ROOT_PASSWORD: root123
+#      MYSQL_DATABASE: myapp
+#    volumes:
+#      - mysql_data:/var/lib/mysql
+#    networks:
+#      - myapp-net
+
+#volumes:
+#  mysql_data:
+
+networks:
+  myapp-net:

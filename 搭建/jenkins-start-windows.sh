@@ -1,3 +1,12 @@
+docker stop jenkins
+docker rm jenkins
+
+# 构建镜像
+cd D:\workspace\java\docker-jenkins\jenkins
+docker build -t my-jenkins .
+
+
+
 docker run -d `
   --name jenkins `
   -p 8080:8080 `
@@ -6,7 +15,6 @@ docker run -d `
   --restart always `
   -v jenkins_home:/var/jenkins_home `
   -v /var/run/docker.sock:/var/run/docker.sock `
-  -v $(which docker):/usr/bin/docker `
   -v D:\workspace\remote-repository:/remote-repository `
   --user root `
-  jenkins/jenkins:lts
+  my-jenkins:latest

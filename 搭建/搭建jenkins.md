@@ -70,6 +70,9 @@ chmod +x /usr/lib/docker/cli-plugins/docker-compose
 # 验证安装成功
 docker compose version
 
+# 安装iproute2 获取宿主机IP
+docker exec -it -u root jenkins apt-get install -y iproute2
+
 ## 设置插件加速
 # Manage Jenkins → Plugins → Advanced，把 Update Site 的 URL 改为
 https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json

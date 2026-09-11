@@ -107,5 +107,11 @@ Manage Jenkins → Tools → Maven → Add Maven 填名称 Maven-3.9，版本选
 ## 验证
 ### 修改代码提交查看访问
 
+修改前！
+![img_2.png](img_2.png)
+
+修改后
+![img_3.png](img_3.png)
+
 
 

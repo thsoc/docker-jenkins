@@ -15,7 +15,7 @@ public class TestController {
 
     @GetMapping("/query/{name}")
     public String query(@PathVariable String name) throws IOException {
-        String helloMsg = name + ",你好" + "!!!!!";
+        String helloMsg = name + ",你好" + "!!!!!￥%@！！@#！@￥";
         return helloMsg;
     }
 }

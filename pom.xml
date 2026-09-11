@@ -37,8 +37,9 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.24</version>
+            <version>1.18.30</version>
             <optional>true</optional>
+<!--            编译需要，运行时由环境提供，不打包-->
             <scope>provided</scope>
         </dependency>
     </dependencies>

@@ -62,12 +62,14 @@ pipeline {                          // 声明这是一个声明式流水线，Je
                 sh '''              # 执行多行 Shell 脚本
                     echo "等待服务启动..."  # 打印提示信息
                     sleep 10               # 等待 10 秒，给容器足够的启动时间
+
                     #### 获取宿主机 IP（Docker 网桥地址）
                     ###HOST_IP=$(ip route | grep default | awk '{print $3}')
                     ###echo "宿主机 IP: $HOST_IP"
                     #### 使用宿主机 IP 进行健康检查后端是否启动成功
                     ###curl -f http://$HOST_IP:8083/actuator/health || exit 1  # 请求 Spring Boot 健康检查端点，-f 表示 HTTP 错误时返回非零退出码，|| exit 1 表示失败则中止
-                    curl -f http://host.docker.internal:8083/actuator/health || exit 1
+
+                    curl -4 -f http://host.docker.internal:8083/actuator/health || exit 1
                     echo "服务启动正常"  # 检查通过后打印成功信息
                 '''
             }

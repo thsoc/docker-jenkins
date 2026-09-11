@@ -37,6 +37,7 @@
 
 docker run -d `
   --name jenkins `
+  --add-host=host.docker.internal:host-gateway `
   -p 8080:8080 `
   -p 50000:50000 `
   -e JAVA_OPTS="-Dhudson.plugins.git.GitSCM.ALLOW_LOCAL_CHECKOUT=true" `

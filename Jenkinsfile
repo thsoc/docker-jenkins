@@ -50,7 +50,8 @@ pipeline {                          // 声明这是一个声明式流水线，Je
 
         stage('部署到测试环境') {     // 定义阶段：部署服务到测试环境
             steps {
-                sh '''              // 使用三引号执行多行 Shell 脚本
+            // 使用三引号执行多行 Shell 脚本
+                sh '''
                     docker compose down --remove-orphans || true  // 停止并删除旧容器，--remove-orphans 清理不再被 compose 文件引用的容器；|| true 确保即使没有运行中的容器也不会报错
                     docker compose up -d  // 以后台模式（-d）启动所有服务容器
                 '''
